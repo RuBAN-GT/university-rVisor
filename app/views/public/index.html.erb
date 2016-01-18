@@ -1,0 +1,17 @@
+<h2 class="ui header">Особенности</h2>
+<div class="ui four doubling stackable cards">
+  <% for i in 1..4 %>
+    <a href="<%= url_for root_path %>" class="card">
+      <div class="image">
+        <%= image_tag "placeholder.png" %>
+      </div>
+      <div class="content">
+        <div class="header">Особенность</div>
+        <div class="description">
+          Описание особенности.
+        </div>
+      </div>
+      <button class="ui bottom attached button">Подробнее <i class="arrow right icon"></i></button>
+    </a>
+  <% end %>
+</div>

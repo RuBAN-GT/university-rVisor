@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>rVisor - <%= get_title || "Панель-управления" %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta charset="utf-8" />
+  <%= stylesheet_link_tag    'application', 'control_panel', media: 'all', 'data-turbolinks-track': true %>
+  <%= javascript_include_tag 'application', 'control_panel', 'data-turbolinks-track': true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= path_breads %>">
+<%= stylesheet_link_tag params[:controller], media: 'all', 'data-turbolinks-track': true if Rails.application.assets.find_asset("#{params[:controller]}.css") %>
+
+<%= render "control_panel/shared/menu.sidebar" %>
+
+<div class="pusher">
+  <div class="ui fixed main menu">
+    <div class="ui container">
+      <a class="toc default item"><i class="sidebar icon"></i></a>
+      <%= active_link_to '<i class="eye icon"></i> rVisor'.html_safe, root_path, class: "header item" %>
+      <div class="right menu">
+        <%= render "control_panel/shared/menu.user" %>
+      </div>
+    </div>
+  </div>
+
+  <div id="container" class="ui main container">
+    <%= render_breadcrumbs builder: SemanticBreadcrumbsBuilder, separator: '<i class="right chevron icon divider"></i>'.html_safe %>
+
+    <%= semantic_flash %>
+
+    <%= yield %>
+  </div>
+</div>
+
+<%= javascript_include_tag params[:controller], 'data-turbolinks-track': true if Rails.application.assets.find_asset("#{params[:controller]}.js") %>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<h2 class="ui header"><%= get_title %></h2>
+
+<table class="ui compact celled definition table">
+  <tbody>
+    <tr>
+      <td class="collapsing">ID</td>
+      <td><%= @service.id %></td>
+    </tr>
+    <tr>
+      <td class="collapsing">Код</td>
+      <td><%= @service.slug %></td>
+    </tr>
+    <tr>
+      <td class="collapsing">Название</td>
+      <td><%= @service.name %></td>
+    </tr>
+    <tr>
+      <td class="collapsing">Описание</td>
+      <td><%= @service.info %></td>
+    </tr>
+    <tr>
+      <td class="collapsing">Владелец</td>
+      <td><%= @service.owner.email %></td>
+    </tr>
+    <tr>
+      <td class="collapsing">Секретный ключ</td>
+      <td><%= @service.secret_key %></td>
+    </tr>
+    <tr>
+      <td class="collapsing">Публичный ключ</td>
+      <td><%= @service.public_key %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to '<i class="pencil icon"></i> Редактировать'.html_safe,
+            edit_service_path(@service),
+            class: "ui icon labeled button"
+%>
+<%= link_to '<i class="trash icon"></i> Удалить'.html_safe,
+            service_path(@service),
+            class:  "ui negative icon labeled button",
+            method: :delete,
+            data:   { :confirm => I18n.t("structures.services.delete.confirm") }
+%>

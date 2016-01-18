@@ -1,0 +1,38 @@
+<%= javascript_include_tag 'ckeditor/basic', 'data-turbolinks-track': true %>
+
+<%= simple_form_for @page do |f| %>
+    <%= f.input :title, label: "Заголовок", required: true %>
+
+    <%= f.input :slug, label: "Код", hint: "Разрешены только латинские символы нижнего регистра и цифры.", required: true %>
+
+    <%= f.association :parent,
+                      as:            :select,
+                      collection:    Page.order(:title).where((@page.id.nil?) ? "id > 0" : "id != #{@page.id}"),
+                      value_method:  :id,
+                      label:         "Родительская страница",
+                      include_blank: "Нет родителя",
+                      input_html:    { :class => "search selection" }
+    %>
+
+    <%= f.input :content, label: "Контент", as: :ckeditor %>
+
+    <%= f.button :button,
+                 '<i class="check icon"></i> Сохранить'.html_safe,
+                 class: "responsive mobile primary icon labeled" %>
+    <%= link_to '<i class="ban icon"></i> Отмена'.html_safe,
+                pages_path,
+                class: "ui responsive mobile icon labeled button" %>
+
+    <% if params[:action] == 'edit' || params[:action] == 'update' %>
+        <%= link_to '<i class="eye icon"></i> Посмотреть'.html_safe,
+                    page_path(@page),
+                    class: "ui responsive mobile teal right floated icon labeled button"
+        %>
+        <%= link_to '<i class="trash icon"></i> Удалить'.html_safe,
+                    page_path(@page),
+                    class:  "ui responsive mobile negative right floated icon labeled button",
+                    method: :delete,
+                    data:   { :confirm => I18n.t("structures.pages.delete.confirm") }
+        %>
+    <% end %>
+<% end %>

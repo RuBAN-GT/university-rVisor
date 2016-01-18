@@ -1,0 +1,25 @@
+.main.ui.menu {
+  &.secondary.pointing, .dropdown.item:active, .link.item:active, a.item:active {
+    border: 0;
+  }
+  .ui.button {
+    margin-left: 0.5em;
+  }
+  .toc.item {
+    display: none;
+  }
+}
+.main.container {
+  padding: 5em 0;
+}
+
+@media all and (max-width: 767px) {
+  .main.ui.menu {
+    .item:not(.header), .menu {
+      display: none;
+    }
+    .toc.item {
+      display: block;
+    }
+  }
+}

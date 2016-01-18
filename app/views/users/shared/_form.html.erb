@@ -1,0 +1,36 @@
+<%= simple_form_for @user do |f| %>
+  <%= f.input :email, label: "Email", required: true %>
+
+  <%= f.input :password, label: "Новый пароль" %>
+
+  <%= f.input :password_confirmation, label: "Подтверждение пароля" %>
+
+  <%= f.association :roles,
+                    as:          :select,
+                    label:       "Роли",
+                    placeholder: "Выберете роли пользователя",
+                    input_html:  { :class => "search selection" }
+  %>
+
+  <%= f.button :button,
+               '<i class="check icon"></i> Сохранить'.html_safe,
+               class: "responsive mobile primary icon labeled"
+  %>
+  <%= link_to '<i class="ban icon"></i> Отмена'.html_safe,
+              users_path,
+              class: "ui responsive mobile icon labeled button"
+  %>
+
+  <% if params[:action] == 'edit' || params[:action] == 'update' %>
+    <%= link_to '<i class="eye icon"></i> Посмотреть'.html_safe,
+                user_path(@user),
+                class: "ui responsive mobile teal right floated icon labeled button"
+    %>
+    <%= link_to '<i class="trash icon"></i> Удалить'.html_safe,
+                user_path(@user),
+                class:  "ui responsive mobile negative right floated icon labeled button",
+                method: :delete,
+                data:   { :confirm => I18n.t("structures.users.delete.confirm") } if allow_delete? @user.id
+    %>
+  <% end %>
+<% end %>

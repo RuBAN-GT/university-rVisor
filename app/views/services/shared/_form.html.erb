@@ -1,0 +1,43 @@
+<%= simple_form_for @service do |f| %>
+  <%= f.association :owner,
+                    as:            :select,
+                    collection:    User.order('email ASC').all,
+                    label:         "Владелец",
+                    placeholder:   "Выберете владельца сервиса",
+                    label_method:  :email,
+                    selected:      (params[:action] == 'edit' || params[:action] == 'update' ? @service.owner.id : current_user.id),
+                    value_method:  :id,
+                    required:      true,
+                    include_blank: false,
+                    prompt:        false,
+                    input_html:    { :class => "search selection" }
+  %>
+
+  <%= f.input :slug, label: "Код", required: true %>
+
+  <%= f.input :name, label: "Имя", required: true %>
+
+  <%= f.input :info, label: "Описание", as: :text, input_html: { :rows => 4 } %>
+
+  <%= f.button :button,
+               '<i class="check icon"></i> Сохранить'.html_safe,
+               class: "responsive mobile primary icon labeled"
+  %>
+  <%= link_to '<i class="ban icon"></i> Отмена'.html_safe,
+              services_path,
+              class: "ui responsive mobile icon labeled button"
+  %>
+
+  <% if params[:action] == 'edit' || params[:action] == 'update' %>
+    <%= link_to '<i class="eye icon"></i> Посмотреть'.html_safe,
+                service_path(@service),
+                class: "ui responsive mobile teal right floated icon labeled button"
+    %>
+    <%= link_to '<i class="trash icon"></i> Удалить'.html_safe,
+                service_path(@service),
+                class:  "ui responsive mobile negative right floated icon labeled button",
+                method: :delete,
+                data:   { :confirm => I18n.t("structures.services.delete.confirm") }
+    %>
+  <% end %>
+<% end %>

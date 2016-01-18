@@ -1,0 +1,16 @@
+<h2 class="ui header"><%= get_title %></h2>
+
+<h3>Мои сервисы</h3>
+<% if @services.length > 0 %>
+  <table class="ui celled striped table">
+    <% @services.each do |service| %>
+      <tr>
+        <td>
+          <%= link_to service.name, service %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>Нет доступных сервисов</p>
+<% end %>

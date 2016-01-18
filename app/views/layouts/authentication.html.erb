@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>rVisor: Аутентификация</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta charset="utf-8" />
+  <%= stylesheet_link_tag    'application', 'authentication', media: 'all', 'data-turbolinks-track': true %>
+  <%= javascript_include_tag 'application', 'authentication', 'data-turbolinks-track': true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= path_breads %>">
+<div class="ui centered grid">
+  <div class="column">
+    <%= yield %>
+
+    <%= semantic_flash %>
+    <%= devise_error_messages! %>
+
+    <p align="center"><%= link_to 'На главную <i class="long arrow right icon"></i>'.html_safe, root_path %></p>
+  </div>
+</div>
+</body>
+</html>

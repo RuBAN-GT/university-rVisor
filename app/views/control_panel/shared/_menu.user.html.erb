@@ -1,0 +1,9 @@
+<div class="ui dropdown item">
+  <i class="user icon"></i>
+  <span><%= current_user.email %></span>
+  <i class="dropdown icon"></i>
+  <div class="menu">
+    <div class="header">Профиль</div>
+    <%= render "shared/menu.user.signed" %>
+  </div>
+</div>

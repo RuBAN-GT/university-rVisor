@@ -1,0 +1,48 @@
+<h2 class="ui header"><%= get_title %></h2>
+
+<%= link_to '<i class="plus icon"></i> Создание страницы'.html_safe,
+            new_page_path,
+            class: "ui primary labeled icon button"
+%>
+
+<% if @pages.length > 0 %>
+    <div class="ui large feed">
+      <% @pages.each_with_index do |page, index| %>
+          <div class="event">
+            <div class="label">
+              <i class="file text icon"></i>
+            </div>
+            <div class="content">
+              <div class="summary">
+                <%= link_to page.title, page_path(page) %>
+                <div class="date">
+                  <%= page.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+                </div>
+              </div>
+              <div class="extra text">
+                <%=
+                  if page.content.length > 100
+                    sanitize(page.content + "...", tags: []).slice(0..100)
+                  else
+                    sanitize page.content, tags: []
+                  end
+                %>
+              </div>
+              <div class="meta">
+                <%= link_to '<i class="pencil icon"></i> Редактировать'.html_safe, edit_page_path(page) %>
+                <%= link_to '<i class="trash icon"></i> Удалить'.html_safe,
+                            page_path(page),
+                            method: "delete",
+                            data: { :confirm => I18n.t("structures.pages.delete.confirm") }
+                %>
+              </div>
+            </div>
+          </div>
+          <% unless index + 1 == @pages.length %>
+              <div class="ui divider"></div>
+          <% end %>
+      <% end %>
+    </div>
+<% else %>
+    <div class="ui message">Нет страниц.</div>
+<% end %>

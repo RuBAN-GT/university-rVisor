@@ -1,0 +1,28 @@
+<div id="sidebar" class="ui teal inverted left vertical sidebar menu">
+  <div class="header item">
+    <i class="home icon"></i>
+    Меню
+  </div>
+  <%= active_link_to "Панель управления", cp_path, class: "item" if current_user.role? :super_admin %>
+  <%= link_to "Роутер", rails_routes_path, class: "item" %>
+      <%= active_link_to "О проекте", root_path, class: "item" %>
+  <%= active_link_to '<i class="users icon"></i> Пользователи'.html_safe, users_path, class: "header item" %>
+  <div class="header item">
+    <i class="file text icon"></i>
+    Страницы
+  </div>
+  <%= active_link_to "Список страниц", pages_path, class: "item" %>
+  <%= active_link_to "Добавить страницу", new_page_path, class: "item" %>
+  <div class="header item">
+    <i class="ticket icon"></i>
+    Сервисы
+  </div>
+  <%= active_link_to "Все сервисы", services_path, class: "item" %>
+  <%= active_link_to "Добавить сервис", new_service_path, class: "item" %>
+  <div class="header item">
+    <i class="search icon"></i>
+    Тесты
+  </div>
+  <%= active_link_to "Все тесты", tests_path, class: "item" %>
+  <%= active_link_to "Добавить тест", new_test_path, class: "item" %>
+</div>

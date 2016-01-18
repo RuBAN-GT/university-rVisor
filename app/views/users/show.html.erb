@@ -1,0 +1,46 @@
+<h2 class="ui header"><%= get_title %></h2>
+
+<table class="ui compact celled definition table">
+  <tbody>
+    <tr>
+      <td class="collapsing"><i class="mail icon"></i> Email</td>
+      <td><%= @user.email %></td>
+    </tr>
+    <tr>
+      <td class="collapsing"><i class="calendar icon"></i> Зарегистрирован</td>
+      <td><%= @user.created_at.blank? ? "---" : @user.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+    </tr>
+    <tr>
+      <td class="collapsing"><i class="clock o icon"></i> Последний вход</td>
+      <td><%= @user.last_sign_in_at.blank? ? "---" : @user.last_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+    </tr>
+    <tr>
+      <td class="collapsing"><i class="globe icon"></i> Последний IP</td>
+      <td><%= @user.current_sign_in_ip %></td>
+    </tr>
+    <tr>
+      <td class="collapsing"><i class="list icon"></i> Роли</td>
+      <td><%= @user.roles(:select => :name).collect(&:name).join ', ' %></td>
+    </tr>
+    <tr>
+      <td class="collapsing"><i class="check icon"></i> Активация</td>
+      <td><%= @user.confirmed? ? 'Подтверждён' : 'Не подтверждён' %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to '<i class="pencil icon"></i> Редактировать'.html_safe,
+            edit_user_path(@user),
+            class: "ui icon labeled button"
+%>
+<%= link_to '<i class="check icon"></i> Активировать'.html_safe,
+            user_manual_confirm_path(@user),
+            class:  "ui positive icon labeled button",
+            method: :put unless @user.confirmed?
+%>
+<%= link_to '<i class="trash icon"></i> Удалить'.html_safe,
+            user_path(@user),
+            class:  "ui negative icon labeled button",
+            method: :delete,
+            data:   { :confirm => I18n.t("structures.users.delete.confirm") } if allow_delete? @user.id
+%>

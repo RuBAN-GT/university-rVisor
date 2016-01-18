@@ -1,0 +1,28 @@
+<h2 class="ui header"><%= get_title %></h2>
+
+<div id="area">
+  <%= simple_form_for [@test, @passage] do |f| %>
+    <div class="ui message">
+      <div class="header">
+        Задание
+      </div>
+      <p><%= @test.info %></p>
+    </div>
+
+    <div class="field">
+      <%= image_tag @test.picture.url, class: "ui screenshot rounded fluid image" %>
+    </div>
+
+    <%= f.input :comment, label: "Комментарий", as: :text, input_html: { :rows => 4 } %>
+
+    <div class="field">
+      <label>Логи</label>
+      <%= text_area_tag :logs, nil, rows: 3 %>
+    </div>
+
+    <%= f.button :button,
+                 '<i class="check icon"></i> Сохранить'.html_safe,
+                 class: "large fluid positive"
+    %>
+  <% end %>
+</div>

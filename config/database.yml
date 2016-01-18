@@ -1,0 +1,29 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: rvisor_development
+  host: localhost
+  pool: 5
+  timeout: 5000,
+  username: rVisor
+  password: Qazwsx123
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: rvisor_test
+  host: localhost
+  pool: 5
+  timeout: 5000,
+  username: rVisor
+  password: Qazwsx123
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: rvisor_production
+  host: localhost
+  pool: 5
+  timeout: 5000,
+  username: rVisor
+  password: Qazwsx123

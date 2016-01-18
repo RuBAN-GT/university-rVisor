@@ -1,0 +1,57 @@
+<h2 class="ui header"><%= get_title %></h2>
+
+<%= link_to '<i class="plus icon"></i> Добавить тест'.html_safe,
+            new_test_path,
+            class: "ui primary labeled icon button"
+%>
+
+<% if @tests.length > 0 %>
+  <table class="ui selectable celled striped table">
+    <thead>
+      <tr>
+        <th class="center aligned">#</th>
+        <th>Название</th>
+        <th>Описание</th>
+        <th>Сервис</th>
+        <th>Владелец</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tests.each do |test| %>
+        <tr>
+          <td class="collapsing"><%= test.id %></td>
+          <td>
+            <%= link_to test.name, test_path(test) %>
+            &nbsp;
+            <%= link_to '<i class="pencil large icon"></i>'.html_safe,
+                        edit_test_path(test),
+                        title: "Редактировать тест",
+                        class: "ui mini olive icon button"
+            %>
+            <%= link_to '<i class="trash large icon"></i>'.html_safe,
+                        test_path(test),
+                        method: "delete",
+                        data:   { :confirm => I18n.t("structures.tests.delete.confirm") },
+                        title:  "Удалить тест",
+                        class:  "ui mini negative icon button"
+            %>
+          </td>
+          <td><%= test.info %></td>
+          <td class="collapsing"><%= test.service.nil? ? '---' : test.service.name %></td>
+          <td class="collapsing"><%= test.owner.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th class="center aligned">#</th>
+        <th>Название</th>
+        <th>Описание</th>
+        <th>Сервис</th>
+        <th>Владелец</th>
+      </tr>
+    </tfoot>
+  </table>
+<% else %>
+  <div class="ui message">Нет тестов.</div>
+<% end %>

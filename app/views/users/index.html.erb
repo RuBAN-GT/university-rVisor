@@ -1,0 +1,57 @@
+<h2 class="ui header"><%= get_title %></h2>
+
+<%= link_to '<i class="plus icon"></i> Добавить пользователя'.html_safe,
+            new_user_path,
+            class: "ui primary labeled icon button"
+%>
+
+<% if @users.length > 0 %>
+  <table class="ui selectable celled striped table">
+    <thead>
+      <tr>
+        <th class="center aligned">#</th>
+        <th>Email</th>
+        <th>Регистрация</th>
+        <th>Последний вход</th>
+        <th>Последний IP</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each_with_index do |user, index| %>
+        <tr <%= ' class="warning"'.html_safe unless user.confirmed? %>>
+          <td class="collapsing center aligned"><%= user.id %></td>
+          <td>
+            <%= link_to user.email, user_path(user) %>
+            &nbsp;
+            <%= link_to '<i class="pencil large icon"></i>'.html_safe,
+                        edit_user_path(user),
+                        title: "Редактировать пользователя",
+                        class: "ui mini olive icon button"
+            %>
+            <%= link_to '<i class="trash large icon"></i>'.html_safe,
+                        user_path(user),
+                        method: "delete",
+                        data:   {:confirm => I18n.t("structures.users.delete.confirm")},
+                        title:  "Удалить пользователя",
+                        class:  "ui mini negative icon button" if allow_delete? user.id
+            %>
+          </td>
+          <td><%= user.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+          <td><%= user.last_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") unless user.last_sign_in_at.blank? %></td>
+          <td><%= user.current_sign_in_ip %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th class="center aligned">#</th>
+        <th>Email</th>
+        <th>Регистрация</th>
+        <th>Последний вход</th>
+        <th>Последний IP</th>
+      </tr>
+    </tfoot>
+  </table>
+<% else %>
+  <div class="ui message">Нет пользователей.</div>
+<% end %>
