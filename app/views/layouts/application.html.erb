@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>rVisor System</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= render "/layouts/shared/main_menu" %>
+
+  <div class="ui main container">
+    <%
+      breads = render_breadcrumbs(builder: ::SemanticBreadcrumbsBuilder)
+
+      unless breads.blank?
+    %>
+      <div class="ui breadcrumb">
+        <%= breads %>
+      </div>
+    <% end %>
+
+    <div id="messages"><%= flash_all %></div>
+
+    <%= sub_layout.blank? ? yield : render(:file => "/sub_layouts/#{sub_layout}") %>
+  </div>
+</body>
+</html>

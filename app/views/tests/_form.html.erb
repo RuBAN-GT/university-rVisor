@@ -1,0 +1,86 @@
+<%= form_for [@service, @test],
+  html: {
+    :id => :testform,
+    :multipart => true,
+    :class => "ui form"
+  } do |f|
+%>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, :placeholder => "Enter the service title" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :info %>
+    <%= f.text_area :info, :rows => 3, :placeholder => "Tip about this test" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :status, "Type" %>
+    <%= f.select :status, options_for_select([["Opinion", "opinion"], ["Clicks", "clicks"], ["Poll", "poll"]], @test.status), {}, :class => "ui fluid selection dropdown" %>
+  </div>
+
+  <% if params[:action].in? ["edit", "update"] %>
+    <div class="field">
+      <%= f.label :public_key %>
+      <%= f.text_field :public_key, :disabled => true %>
+    </div>
+    <div class="field">
+      <div class="ui toggle checkbox">
+        <%= check_box_tag "test[clear_key]" %>
+        <%= label_tag "test[clear_key]", "Clear key" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="ui horizontal divider">Time limit</div>
+
+  <div class="field">
+    <%= f.label :time_limit, "Time limit (in seconds)" %>
+    <%= f.number_field :time_limit, :min => 0 %>
+  </div>
+
+  <div class="field">
+    <div class="ui toggle checkbox">
+      <%= check_box :test, :time_status, {:checked => @test.time_status == 'limit'}, "limit", "free" %>
+
+      <%= label_tag :time_status, "Strict time limit" %>
+    </div>
+  </div>
+
+  <div class="ui horizontal divider">Task</div>
+
+  <div class="field">
+    <%= f.label :description, "Task for users" %>
+    <%= f.text_area :description, :rows => 6 %>
+  </div>
+
+  <div class="ui horizontal divider">Screenshots</div>
+
+  <div class="ui center aligned basic segment">
+    <div class="upload field">
+      <div class="ui file">
+        <label for="uploader" class="ui teal button icon large labeled tag <%= 'disabled' if @test.screens.length > 0 && @test.status == 'clicks' %>">
+          <i class="file icon"></i>
+          Add screenshots
+        </label>
+
+        <%= file_field_tag "screen[image]", :id => :uploader, :multiple => true, :style => "display: none" %>
+      </div>
+
+      <div class="ui four doubling uploads cards">
+        <% if @test.screens.any? %>
+          <% @test.screens.each do |screen| %>
+            <%= screen_card screen %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  <div class="actions">
+    <%= f.button "#{icon_tag :save} Save".html_safe, class: "ui primary icon labeled button" %>
+    <%= link_to "#{icon_tag :eye} Show".html_safe, [@service, @test], :class => "ui button icon labeled" if params[:action].in? ["edit", "update"] %>
+  </div>
+<% end %>

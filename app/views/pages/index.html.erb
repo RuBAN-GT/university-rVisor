@@ -1,0 +1,27 @@
+<h1 class="ui dividing header">Welcome</h1>
+
+<p>Welcome to rVisor service!</p>
+
+<h2 class="ui header">Choose section</h2>
+<div class="ui four doubling cards">
+  <div class="card">
+    <div class="content">
+      <div class="header"><%= link_to "Services", services_path %></div>
+      <div class="description">
+        You can create your thematic section (project) with tests.
+      </div>
+    </div>
+
+    <%= link_to "View #{icon_tag 'arrow right'}".html_safe, services_path, :class => "ui blue bottom attached button" %>
+  </div>
+  <div class="card">
+    <div class="content">
+      <div class="header"><%= link_to "Tests", tests_path %></div>
+      <div class="description">
+        Tests for your explains.
+      </div>
+    </div>
+
+    <%= link_to "View #{icon_tag 'arrow right'}".html_safe, tests_path, :class => "ui orange bottom attached button" %>
+  </div>
+</div>

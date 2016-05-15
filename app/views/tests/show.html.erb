@@ -1,0 +1,56 @@
+<h1 class="ui dividing header">Information on test</h1>
+
+<table class="ui celled striped definition table">
+  <tr>
+    <td class="collapsing">ID</td>
+    <td><%= @test.id %></td>
+  </tr>
+  <tr>
+    <td class="collapsing">Title</td>
+    <td><%= @test.title %></td>
+  </tr>
+  <tr>
+    <td class="collapsing">Info</td>
+    <td><%= @test.info %></td>
+  </tr>
+  <tr>
+    <td class="collapsing">Service</td>
+    <td><%= link_to @test.service.title, @test.service %></td>
+  </tr>
+  <tr>
+    <td class="collapsing">Type</td>
+    <td><%= @test.status.capitalize %></td>
+  </tr>
+  <tr class="warning">
+    <td class="collapsing">Time limit (s)</td>
+    <td><em><%= @test.time_limit.to_i %></em></td>
+  </tr>
+  <tr class="warning">
+    <td class="collapsing">Strict time limit</td>
+    <td><%= @test.limited? ? "Yes" : "No" %></td>
+  </tr>
+  <tr class="positive">
+    <td class="collapsing">Public key</td>
+    <td><em><%= @test.public_key %></em></td>
+  </tr>
+  <tr>
+    <td class="collapsing">Task</td>
+    <td><%= @test.description %></td>
+  </tr>
+</table>
+
+<% if @test.screens.any? %>
+  <h2 class="ui dividing header">Screenshots</h2>
+  <div class="ui four doubling uploads cards">
+    <% @test.screens.each do |screen| %>
+      <div class="card">
+        <%= link_to image_tag(screen.image.thumb.url), screen.image.url, :target => :_blank, :class => "image" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="ui divider"></div>
+<% end %>
+
+<%= link_to "#{icon_tag :edit} Edit".html_safe, edit_service_test_path(@service, @test), :class => "ui positive button icon labeled" %>
+<%= link_to "#{icon_tag :trash} Destroy".html_safe, service_test_path(@service, @test), :method => :delete, :class => "ui negative button icon labeled" %>

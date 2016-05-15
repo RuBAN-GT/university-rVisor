@@ -1,0 +1,20 @@
+<h1 class="ui header"><%= t('.sign_up', :default => "Sign up") %></h1>
+
+<%= form_for resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "ui form"} do |f| %>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <%= f.button t('.sign_up', :default => "Sign up"), :class => "ui primary button" %>
+<% end %>

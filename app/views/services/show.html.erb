@@ -1,0 +1,24 @@
+<h1 class="ui dividing header"><%= @service.title %></h1>
+
+<table class="ui celled striped definition table">
+  <tr>
+    <td class="collapsing">ID</td>
+    <td><%= @service.id %></td>
+  </tr>
+  <tr>
+    <td class="collapsing">Title</td>
+    <td><%= @service.title %></td>
+  </tr>
+  <tr>
+    <td class="collapsing">Info</td>
+    <td><%= @service.info %></td>
+  </tr>
+  <tr class="positive">
+    <td class="collapsing">Private key</td>
+    <td><em><%= @service.private_key %></em></td>
+  </tr>
+</table>
+
+<%= link_to "#{icon_tag :list} Tests".html_safe, service_tests_path(@service), :class => "ui teal button icon labeled" %>
+<%= link_to "#{icon_tag :edit} Edit".html_safe, edit_service_path(@service), :class => "ui positive button icon labeled" %>
+<%= link_to "#{icon_tag :trash} Destroy".html_safe, service_path(@service), :method => :delete, :class => "ui negative button icon labeled" %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  test_id: 
+  user_id: 
+  time_cont: 1
+  main_comment: MyText
+
+two:
+  test_id: 
+  user_id: 
+  time_cont: 1
+  main_comment: MyText

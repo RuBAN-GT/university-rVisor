@@ -1,0 +1,18 @@
+html, body {
+  background-color: #f0f0f0;
+}
+
+.ui.file {
+  margin-bottom: 1.5rem;
+}
+
+.main.container {
+  padding: 56px 0 32px;
+  #messages .message:first-of-type {
+    margin-top: 2rem;
+  }
+}
+
+.browser.popup {
+  min-width: 400px;
+}

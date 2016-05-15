@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: "friend"
+  password: "Qazwsx123"
+
+development:
+  <<: *default
+  database: rvisor_system_development
+
+test:
+  <<: *default
+  database: rvisor_system_test
+
+production:
+  <<: *default
+  database: rvisor_system_production

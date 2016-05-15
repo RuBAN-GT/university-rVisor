@@ -1,0 +1,34 @@
+<h1 class="ui dividing header">Listing Tests</h1>
+
+<%= link_to "#{icon_tag :plus} New Test".html_safe, new_service_test_path, :class => "ui primary button icon labeled" %>
+
+<% if @tests.any? %>
+  <table class="ui celled  table">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Info</th>
+      <th>Key</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @tests.each do |item| %>
+      <tr>
+        <td class="collapsing"><%= item.id %></td>
+        <td class="collapsing"><%= link_to item.title, service_test_path(@service, item) %></td>
+        <td><%= item.info %></td>
+        <td class="collapsing"><em><%= item.public_key %></em></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="ui icon empty message">
+    <i class="idea icon"></i>
+    <div class="content">
+      <h4 class="ui header">Empty</h4>
+      <p>No tests.</p>
+    </div>
+  </div>
+<% end %>

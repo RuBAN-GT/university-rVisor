@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  result_id: 
+  x: 1
+  'y': 1
+  color: MyString
+  comment: MyString
+
+two:
+  result_id: 
+  x: 1
+  'y': 1
+  color: MyString
+  comment: MyString

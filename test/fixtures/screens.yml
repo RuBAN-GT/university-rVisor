@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  test_id: 
+  image: MyString
+  comment: MyString
+  order: 1
+
+two:
+  test_id: 
+  image: MyString
+  comment: MyString
+  order: 1

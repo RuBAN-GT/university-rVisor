@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  result_id: 
+  x: 1
+  'y': 1
+
+two:
+  result_id: 
+  x: 1
+  'y': 1

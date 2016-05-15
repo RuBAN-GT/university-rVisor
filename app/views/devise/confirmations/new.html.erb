@@ -1,0 +1,12 @@
+<h1 class="ui header"><%= t('.resend_confirmation_instructions', :default => 'Resend confirmation instructions') %></h1>
+
+<%= form_for resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, :class => "ui form" } do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <%= f.button t('.resend_confirmation_instructions', :default => 'Resend confirmation instructions'), :class => "ui primary button" %>
+<% end %>

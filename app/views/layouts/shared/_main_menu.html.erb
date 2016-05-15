@@ -1,0 +1,38 @@
+<div class="ui fixed main menu">
+  <div class="ui container">
+    <%= link_to '<i class="grid layout icon"></i> rVisor'.html_safe, root_path, :class => "browse link titled item", :title => "rVisor menu" %>
+    <div class="ui flowing browser transition popup hidden">
+      <div class="ui three column relaxed divided grid">
+        <div class="column">
+          <h4 class="ui header">Main</h4>
+          <div class="ui link list">
+            <%= link_to "Home", root_path, class: "item" %>
+          </div>
+        </div>
+        <div class="column">
+          <h4 class="ui header">Services</h4>
+          <div class="ui link list">
+            <%= link_to "List", services_path, class: "item" %>
+            <%= link_to "New service", new_service_path, class: "item" %>
+          </div>
+        </div>
+        <div class="column">
+          <h4 class="ui header">Tests</h4>
+          <div class="ui link list">
+            <%= link_to "List", tests_path, class: "item" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right menu">
+      <% if user_signed_in? %>
+        <%= link_to "#{icon_tag "user"} Profile".html_safe, edit_user_registration_path, class: "item" %>
+        <%= link_to "#{icon_tag "sign out"} Sign out".html_safe, destroy_user_session_path, method: :delete, class: "item" %>
+      <% else %>
+        <%= link_to "#{icon_tag "sign in"} Sign in".html_safe, new_user_session_path, :class => "item" %>
+        <%= link_to "#{icon_tag "add user"} Sign up".html_safe, new_user_registration_path, :class => "item" %>
+      <% end %>
+    </div>
+  </div>
+</div>

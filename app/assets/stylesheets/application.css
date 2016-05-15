@@ -1,0 +1,7 @@
+/*
+ *= require semantic-ui
+ *
+ *= require main
+ *= require_tree .
+ *= require_self
+ */

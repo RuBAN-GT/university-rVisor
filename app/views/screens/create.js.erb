@@ -1,0 +1,6 @@
+// Add item to markup
+$('#testform .uploads.cards').append('<%= screen_card @screen %>');
+$('.card[data-screen="<%= @screen.id %>"]').hide().fadeIn(1000);
+
+// Add item to form
+$('#testform').append('<%= hidden_field_tag "screens[images][]", @screen.id, "data-screen" => @screen.id %>')

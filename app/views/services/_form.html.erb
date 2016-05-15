@@ -1,0 +1,29 @@
+<%= form_for @service, :html => {:class => "ui form"} do |f| %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, :placeholder => "Enter the service title" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :info %>
+    <%= f.text_area :info, :rows => 3 %>
+  </div>
+
+  <% if params[:action].in? ["edit", "update"] %>
+    <div class="field">
+      <%= f.label :private_key %>
+      <%= f.text_field :private_key, :disabled => true %>
+    </div>
+    <div class="field">
+      <div class="ui toggle checkbox">
+        <%= check_box_tag "service[clear_key]" %>
+        <%= label_tag "service[clear_key]", "Clear key" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.button "#{icon_tag :save} Save".html_safe, class: "ui primary icon labeled button" %>
+    <%= link_to "#{icon_tag :eye} Show".html_safe, @service, :class => "ui button icon labeled" if params[:action].in? ["edit", "update"] %>
+  </div>
+<% end %>

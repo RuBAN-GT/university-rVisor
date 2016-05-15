@@ -1,0 +1,6 @@
+/log/*
+!/log/.keep
+/tmp
+.idea
+public/uploads
+*~
