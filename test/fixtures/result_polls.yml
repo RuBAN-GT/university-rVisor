@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  test_id: 
+  user_id: 
+  screen_id: 
+
+two:
+  test_id: 
+  user_id: 
+  screen_id: 

@@ -2,7 +2,7 @@
   <div class="ui container">
     <%= link_to '<i class="grid layout icon"></i> rVisor'.html_safe, root_path, :class => "browse link titled item", :title => "rVisor menu" %>
     <div class="ui flowing browser transition popup hidden">
-      <div class="ui three column relaxed divided grid">
+      <div class="ui four column relaxed divided grid">
         <div class="column">
           <h4 class="ui header">Main</h4>
           <div class="ui link list">
@@ -20,6 +20,12 @@
           <h4 class="ui header">Tests</h4>
           <div class="ui link list">
             <%= link_to "List", tests_path, class: "item" %>
+          </div>
+        </div>
+        <div class="column">
+          <h4 class="ui header">Research</h4>
+          <div class="ui link list">
+            <%= link_to "List", research_index_path, class: "item" %>
           </div>
         </div>
       </div>

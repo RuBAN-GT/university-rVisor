@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514151556) do
+ActiveRecord::Schema.define(version: 20160515175828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 20160514151556) do
   end
 
   add_index "result_comments", ["result_id"], name: "index_result_comments_on_result_id", using: :btree
+
+  create_table "result_polls", force: :cascade do |t|
+    t.integer  "result_id"
+    t.integer  "screen_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "result_polls", ["result_id"], name: "index_result_polls_on_result_id", using: :btree
+  add_index "result_polls", ["screen_id"], name: "index_result_polls_on_screen_id", using: :btree
 
   create_table "results", force: :cascade do |t|
     t.integer  "test_id"
@@ -123,6 +133,8 @@ ActiveRecord::Schema.define(version: 20160514151556) do
 
   add_foreign_key "result_clicks", "results"
   add_foreign_key "result_comments", "results"
+  add_foreign_key "result_polls", "results"
+  add_foreign_key "result_polls", "screens"
   add_foreign_key "results", "tests"
   add_foreign_key "results", "users"
   add_foreign_key "screens", "tests"

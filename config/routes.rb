@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   patch  '/screens'  => 'screens#create'
   resources :screens, :only => [:index, :create, :destroy]
 
-  resources :results, :path => '/research', :controller => :research, :only => [:index, :show, :new, :create]
+  resources :results, :path => '/research', :as => :research, :controller => :research, :only => [:index, :show, :new, :create]
 end

@@ -3,7 +3,7 @@
 <p>Welcome to rVisor service!</p>
 
 <h2 class="ui header">Choose section</h2>
-<div class="ui four doubling cards">
+<div class="ui three doubling cards">
   <div class="card">
     <div class="content">
       <div class="header"><%= link_to "Services", services_path %></div>
@@ -23,5 +23,15 @@
     </div>
 
     <%= link_to "View #{icon_tag 'arrow right'}".html_safe, tests_path, :class => "ui orange bottom attached button" %>
+  </div>
+  <div class="card">
+    <div class="content">
+      <div class="header"><%= link_to "Research", research_index_path %></div>
+      <div class="description">
+        Take part in the tests.
+      </div>
+    </div>
+
+    <%= link_to "View #{icon_tag 'arrow right'}".html_safe, research_index_path, :class => "ui green bottom attached button" %>
   </div>
 </div>
