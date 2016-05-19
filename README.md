@@ -4,10 +4,14 @@
 
 ## Структура проекта
 
-### Диаграмма вариантов использования
+### Use case диаграмма
 
 ![UseCase](docs/images/usecase.png)
 
 ### Диаграмма классов
 
 ![Diagram](docs/images/classes.png)
+
+### Диаграмма последовательности
+
+![Diagram](docs/images/sequence.png)
