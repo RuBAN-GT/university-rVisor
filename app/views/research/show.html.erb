@@ -1,0 +1,62 @@
+<h1 class="ui dividing header">
+  Result:
+  <%= @research.test.title %>
+  <div class="ui label teal"><%= @research.test.status %></div>
+</h1>
+
+<div class="ui research new segment">
+  <% unless @research.test.info.blank? %>
+  <div class="ui basic segment">
+    <div class="ui header">Information about test</div>
+    <p><%= @research.test.info %></p>
+  </div>
+
+  <div class="ui divider"></div>
+  <% end %>
+
+  <div class="ui basic segment">
+    <div class="ui header">Task</div>
+    <p><%= @research.test.description %></p>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <% unless @research.main_comment.blank? %>
+  <div class="ui basic segment">
+    <div class="ui header">Comment</div>
+    <p><%= @research.main_comment %></p>
+  </div>
+
+  <div class="ui divider"></div>
+  <% end %>
+
+  <div class="ui basic segment">
+    <div class="ui header">Objects</div>
+    <div class="ui four doubling uploads cards">
+      <% @research.test.screens.each do |screen| %>
+        <div class="card">
+          <%= link_to image_tag(screen.image.thumb.url), screen.image.url, :target => :_blank, :class => :image %>
+          <% unless screen.comment.blank? %>
+            <div class="content">
+              <%= screen.comment %>
+            </div>
+          <% end %>
+
+          <% if @research.test.status == 'poll' && screen.id.in?(@research.result_polls.map{ |item| item.screen.id }) %>
+            <div class="ui top right attached green label">
+              <%= icon_tag :check %> Selected
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <% if @research.test.status == 'clicks' %>
+      <div class="ui header">Clicks</div>
+
+      <%= link_to image_tag(@research.heatmap_url), @research.heatmap_url, :target => :_blank, :class => "ui fluid rounded image" %>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to "#{icon_tag :trash} Remove".html_safe, research_path(@research), :method => :delete, :class => "ui negative button icon labeled" %>

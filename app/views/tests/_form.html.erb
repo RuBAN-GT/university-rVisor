@@ -62,7 +62,7 @@
       <div class="ui file">
         <label for="uploader" class="ui teal button icon large labeled tag <%= 'disabled' if @test.screens.length > 0 && @test.status == 'clicks' %>">
           <i class="file icon"></i>
-          Add screenshots
+          Add objects
         </label>
 
         <%= file_field_tag "screen[image]", :id => :uploader, :multiple => true, :style => "display: none" %>

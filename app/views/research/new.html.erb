@@ -1,0 +1,69 @@
+<h1 class="ui dividing header">
+  <%= @test.title %>
+  <div class="ui label teal"><%= @test.status %></div>
+</h1>
+
+<%= form_for @research, :url => create_research_path(@test), :html => { :id => "research", :class => "ui form" } do |f| %>
+<div class="ui research new segment">
+  <% unless @test.info.blank? %>
+  <div class="ui basic segment">
+    <div class="ui header">Information about test</div>
+    <p><%= @test.info %></p>
+  </div>
+
+  <div class="ui divider"></div>
+  <% end %>
+
+  <div class="ui basic segment">
+    <div class="ui header">Task</div>
+    <p><%= @test.description %></p>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <div class="ui basic field segment">
+    <div class="ui header">Comment</div>
+    <%= f.text_area :main_comment, :placeholder => "Enter your opinion about task and objects.", :rows => 4 %>
+
+    <br /><br />
+    <div class="actions">
+      <%= f.button "#{icon_tag :send} Send".html_safe, :class => "ui primary button" %>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <div class="ui basic segment">
+    <div class="ui header">Objects</div>
+    <div class="ui four doubling uploads cards">
+      <% @test.screens.each do |screen| %>
+        <div class="card">
+          <%= link_to image_tag(screen.image.thumb.url), screen.image.url, :target => :_blank, :class => :image %>
+          <% unless screen.comment.blank? %>
+            <div class="content">
+              <%= screen.comment %>
+            </div>
+          <% end %>
+
+          <% if @test.status == 'poll' %>
+            <div class="ui bottom attached vote button" data-screen="<%= screen.id %>">Vote</div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <% if @test.status == 'clicks' %>
+      <div class="ui header">For clicks</div>
+
+      <% unless @test.screens.first.comment.blank? %>
+      <div class="ui message">
+        <%= @test.screens.first.comment %>
+      </div>
+      <% end %>
+
+      <div class="objects clicked">
+        <%= image_tag @test.screens.first.image.url, :class => "ui fluid image" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% end %>

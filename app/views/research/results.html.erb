@@ -1,0 +1,34 @@
+<h1 class="ui dividing header">Results of <%= @test.title %></h1>
+
+<%= link_to "#{icon_tag :add} Research".html_safe, new_research_path(@test), :class => "ui primary button icon labeled" %>
+
+<% if @test.results.any? %>
+  <table class="ui celled  table">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>User</th>
+      <th>Main comment</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @test.results.each do |item| %>
+      <tr>
+        <td class="collapsing"><%= link_to item.id, research_path(item) %></td>
+        <td class="collapsing"><%= item.user.email %></td>
+        <td><%= item.main_comment %></td>
+        <td class="collapsing"><%= link_to "#{icon_tag :trash}".html_safe, research_path(item), :method => :delete, :class => "ui negative button circular icon" %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="ui icon empty message">
+    <i class="idea icon"></i>
+    <div class="content">
+      <h4 class="ui header">Empty</h4>
+      <p>No results.</p>
+    </div>
+  </div>
+<% end %>

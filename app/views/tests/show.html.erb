@@ -40,7 +40,7 @@
 </table>
 
 <% if @test.screens.any? %>
-  <h2 class="ui dividing header">Screenshots</h2>
+  <h2 class="ui dividing header">Objects</h2>
   <div class="ui four doubling uploads cards">
     <% @test.screens.each do |screen| %>
       <div class="card">
@@ -49,8 +49,27 @@
     <% end %>
   </div>
 
-  <div class="ui divider"></div>
+  <% if @test.status == 'clicks' %>
+    <div class="ui dividing header">Clicks</div>
+    <%= link_to image_tag(@test.heatmap_url), @test.heatmap_url, :target => :_blank, :class => "ui image fluid" %>
+  <% elsif @test.status == 'poll' %>
+    <div class="ui dividing header">Total result</div>
+
+    <div class="ui basic segment poll results">
+    <% @test.screens.each do |screen| %>
+      <div class="ui screens progress" data-value="<%= @test.poll_result(screen.id) %>">
+        <div class="bar">
+          <div class="progress"></div>
+        </div>
+        <div class="label"><%= screen.comment || screen.id %></div>
+      </div>
+    <% end %>
+    </div>
+  <% end %>
 <% end %>
 
+<div class="ui divider"></div>
+
+<%= link_to "#{icon_tag :list} Results".html_safe, test_results_path(@test), :class => "ui teal button labeled icon" %>
 <%= link_to "#{icon_tag :edit} Edit".html_safe, edit_service_test_path(@service, @test), :class => "ui positive button icon labeled" %>
 <%= link_to "#{icon_tag :trash} Destroy".html_safe, service_test_path(@service, @test), :method => :delete, :class => "ui negative button icon labeled" %>

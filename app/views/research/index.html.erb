@@ -1,0 +1,35 @@
+<h1 class="ui dividing header">All tests</h1>
+
+<% if @tests.any? %>
+  <table class="ui celled  table">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Info</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @tests.each do |item| %>
+      <tr>
+        <td class="collapsing"><%= item.id %></td>
+        <td class="collapsing"><%= link_to item.title, new_research_path(item) %></td>
+        <td><%= item.info %></td>
+        <td class="collapsing">
+          <%= link_to icon_tag(:eye), service_test_path(item.service, item), :class => "ui circular icon teal button" %>
+          <%= link_to icon_tag(:list), test_results_path(item), :class => "ui circular icon blue button" %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="ui icon empty message">
+    <i class="idea icon"></i>
+    <div class="content">
+      <h4 class="ui header">Empty</h4>
+      <p>No tests.</p>
+    </div>
+  </div>
+<% end %>

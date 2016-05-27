@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160515175828) do
+ActiveRecord::Schema.define(version: 20160522184645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "result_clicks", force: :cascade do |t|
     t.integer  "result_id"
-    t.integer  "x"
-    t.integer  "y"
+    t.float    "x"
+    t.float    "y"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

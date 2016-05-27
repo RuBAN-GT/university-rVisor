@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   has_many :services, :inverse_of => :user, :dependent => :delete_all
   has_many :tests, :inverse_of => :user, :dependent => :delete_all
+  has_many :results, :inverse_of => :user, :dependent => :delete_all
 
   has_and_belongs_to_many :roles, :join_table => :users_roles
 
