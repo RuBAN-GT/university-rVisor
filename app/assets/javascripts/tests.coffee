@@ -28,6 +28,8 @@ ready = ->
     }
   )
 
+  $('#uploader').bind 'fileuploadchunksend', (e, data) ->
+    console.log data
   $('#uploader').bind 'fileuploadstart', (e, data) ->
     $('.upload.field .ui.file input').attr 'disabled', true
     $('.upload.field .ui.file .button').addClass 'disabled'

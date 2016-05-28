@@ -53,7 +53,7 @@
     <div class="ui dividing header">Clicks</div>
     <%= link_to image_tag(@test.heatmap_url), @test.heatmap_url, :target => :_blank, :class => "ui image fluid" %>
   <% elsif @test.status == 'poll' %>
-    <div class="ui dividing header">Total result</div>
+    <div class="ui dividing header">Total result (<%= @test.poll_total %>)</div>
 
     <div class="ui basic segment poll results">
     <% @test.screens.each do |screen| %>

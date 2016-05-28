@@ -2,8 +2,8 @@ class Test < ActiveRecord::Base
   belongs_to :service, :inverse_of => :tests
   belongs_to :user, :inverse_of => :tests
 
-  has_many :screens, :inverse_of => :test, :dependent => :delete_all
-  has_many :results, :inverse_of => :test, :dependent =>  :delete_all
+  has_many :screens, :inverse_of => :test, :dependent => :destroy
+  has_many :results, :inverse_of => :test, :dependent =>  :destroy
 
   validates :title, presence: true
   validates :description, presence: true
@@ -45,6 +45,10 @@ class Test < ActiveRecord::Base
     else
       @poll_results
     end
+  end
+
+  def poll_total
+    all = ResultPoll.where(:result_id => results.map{|e| e.id.to_i}).distinct.count
   end
 
   def poll_result(id)

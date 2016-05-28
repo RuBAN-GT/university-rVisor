@@ -1,6 +1,7 @@
 <h1 class="ui dividing header">Results of <%= @test.title %></h1>
 
 <%= link_to "#{icon_tag :add} Research".html_safe, new_research_path(@test), :class => "ui primary button icon labeled" %>
+<%= link_to "#{icon_tag :eye} To test".html_safe, service_test_path(@test.service, @test), :class => "ui teal button icon labeled" %>
 
 <% if @test.results.any? %>
   <table class="ui celled  table">

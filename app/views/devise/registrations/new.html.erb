@@ -1,9 +1,14 @@
 <h1 class="ui header"><%= t('.sign_up', :default => "Sign up") %></h1>
 
-<%= form_for resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "ui form"} do |f| %>
+<%= form_for resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "ui form"} do |f| %>
   <div class="field">
     <%= f.label :email %>
     <%= f.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
   </div>
 
   <div class="field">

@@ -22,8 +22,9 @@ class ResearchController < ApplicationController
 
     @research = Result.new(data)
 
-    @research.test_id = @test.id
-    @research.user_id = current_user.id
+    @research.test_id   = @test.id
+    @research.user_id   = current_user.id
+    @research.time_cont = Time.now.to_i - session[:time_cont] if session[:time_cont].is_a? Integer
 
     if @research.save
       unless polls.nil?
@@ -66,6 +67,8 @@ class ResearchController < ApplicationController
 
   def show
     @research = Result.find(params[:id])
+
+    session[:time_cont] = Time.now.to_i
 
     add_breadcrumb @research.test.title, test_results_path(@research.test)
     add_breadcrumb 'Result', research_path(@research)
