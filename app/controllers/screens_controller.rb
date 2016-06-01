@@ -1,4 +1,5 @@
 class ScreensController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @screens = Screen.all

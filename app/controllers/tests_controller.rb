@@ -1,4 +1,6 @@
 class TestsController < ApplicationController
+  before_action :authenticate_user!
+
   add_breadcrumb "Services", :services_path
 
   before_action :set_service, except: [:all]

@@ -1,4 +1,6 @@
 class ResearchController < ApplicationController
+  before_action :authenticate_user!
+
   add_breadcrumb "Research", :research_index_path
 
   before_action :set_test, :only => [:new, :create, :results]
